@@ -37,9 +37,39 @@ class LinkedList {
         }
 
     }
-    
-    prepend() {
+
+    toString() {
+        let str = '';
+        const separator = ', ';
         
+        let current = this.head;
+
+        // Start with the head and keep going through each node's .next.
+        // For each node, add its value and the separator to the string.
+        while(current.next !== null) {
+            str += current.value + separator
+            current = current.next
+        }
+        
+        str += current.value
+
+        return str;
+    }
+    
+    prepend(value) {
+        const newNode = new Node(value);
+
+        if(this.head === null) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            // const oldHead = this.head;
+            // this.head = newNode;
+            // this.head.next = oldHead;
+
+            newNode.next = this.head;
+            this.head = newNode;
+        }
     }
     
     getAt() {
@@ -47,6 +77,10 @@ class LinkedList {
     }
     
     removeAt() {
+        
+    }
+
+    insertAt() {
         
     }
 }
@@ -59,6 +93,10 @@ newList.append(5);
 newList.append(15);
 newList.append(20);
 
-console.log(newList.head.next);
+newList.prepend(30);
 
-document.querySelector('.result').innerText = newList.head.value;
+console.log(newList.toString())
+
+// console.log(newList.head.next);
+
+// document.querySelector('.result').innerText = newList.head.value;
